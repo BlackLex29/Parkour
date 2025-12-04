@@ -127,8 +127,8 @@ export function HeroSection() {
                 className="w-full h-full"
                 poster="/trailer-thumbnail.jpg"
               >
-                <source src="/vault-breaker-trailer.mp4" type="video/mp4" />
-                <source src="/vault-breaker-trailer.webm" type="video/webm" />
+                <source src="/trailer-video.mp4" type="video/mp4" />
+                <source src="/trailer-video.mp4" type="video/webm" />
                 Your browser does not support the video tag.
               </video>
 
