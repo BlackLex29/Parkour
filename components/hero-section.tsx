@@ -1,227 +1,88 @@
-"use client"
+ "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Youtube, X, Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
-
-const heroImages = [
-  {
-    id: 1,
-    url: "1.png",
-    title: "Neo-Tokyo Skyline",
-    description: "Jump across futuristic skyscrapers in 2045 Tokyo"
-  },
-  {
-    id: 2,
-    url: "2.png",
-    title: "Parkour Action",
-    description: "Master advanced wall running techniques"
-  },
-  {
-    id: 3,
-    url: "3.png",
-    title: "Cityscape",
-    description: "Race through neon-lit streets at night"
-  },
-  {
-    id: 4,
-    url: "4.png",
-    title: "Character Showcase",
-    description: "Choose from unique parkour specialists"
-  },
-  {
-    id: 5,
-    url: "5.jpg",
-    title: "Urban Exploration",
-    description: "Discover hidden routes and shortcuts"
-  }
-]
+import { Youtube, X, Play, Sparkles, GamepadIcon } from "lucide-react"
 
 export function HeroSection() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [hasScrolled, setHasScrolled] = useState(false)
-
-  // Check scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      if (scrollPosition > 50) {
-        setHasScrolled(true)
-      } else {
-        setHasScrolled(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Auto slide carousel
-  useEffect(() => {
-    if (!isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      )
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
-
-  const nextImage = () => {
-    setIsAutoPlaying(false)
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-    )
-  }
-
-  const prevImage = () => {
-    setIsAutoPlaying(false)
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === 0 ? heroImages.length - 1 : prevIndex - 1
-    )
-  }
-
-  const goToImage = (index: number) => {
-    setIsAutoPlaying(false)
-    setCurrentImageIndex(index)
-  }
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 lg:pt-20 px-4">
-      {/* Dark Background */}
-      <div className="absolute inset-0 bg-slate-950 z-0"></div>
-      
-      {/* Main Container */}
-      <div className="container mx-auto relative z-10 flex flex-col items-center">
-        
-        {/* Image Box Container */}
-        <div className="w-full max-w-6xl mb-8">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-700 bg-slate-900">
-            {/* Carousel Container */}
-            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="absolute inset-0"
-                >
-                  <img
-                    src={heroImages[currentImageIndex].url}
-                    alt={heroImages[currentImageIndex].title}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </motion.div>
-              </AnimatePresence>
-              
-              {/* Carousel Navigation */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-4">
-                {/* Prev Button */}
-                <button
-                  onClick={prevImage}
-                  className="w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 flex items-center justify-center hover:scale-110 transition-all backdrop-blur-sm"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="w-5 h-5 text-white" />
-                </button>
-
-                {/* Dots Indicator */}
-                <div className="flex gap-2">
-                  {heroImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToImage(index)}
-                      className={`w-3 h-3 rounded-full transition-all ${
-                        index === currentImageIndex 
-                          ? 'bg-cyan-400 w-8' 
-                          : 'bg-white/50 hover:bg-white/70'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                {/* Next Button */}
-                <button
-                  onClick={nextImage}
-                  className="w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 flex items-center justify-center hover:scale-110 transition-all backdrop-blur-sm"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="w-5 h-5 text-white" />
-                </button>
-              </div>
-            </div>
-            
-            {/* Image Info */}
-            <div className="p-4 bg-gradient-to-b from-slate-800 to-slate-900 border-t border-slate-700">
-              <motion.div
-                key={currentImageIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-center"
-              >
-                <h3 className="text-white font-bold text-xl mb-1">{heroImages[currentImageIndex].title}</h3>
-                <p className="text-cyan-200 text-sm">{heroImages[currentImageIndex].description}</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* Content Below Image */}
-        <motion.div 
-          initial={{ opacity: 1 }}
-          animate={{ opacity: hasScrolled ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-          className="text-center max-w-2xl"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Experience Ultimate Parkour Adventure
-          </h1>
-          <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-            Master urban freerunning across breathtaking landscapes. 
-            Unleash your skills in the most dynamic parkour experience.
-          </p>
-          
-          {/* Watch Trailer Button */}
-          <Button 
-            size="lg"
-            className="px-10 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold text-xl rounded-xl transition-all hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 border-2 border-cyan-400/30 flex items-center justify-center gap-3 mx-auto"
-            onClick={() => setIsOpen(true)}
-          >
-            <Youtube className="w-6 h-6" />
-            <span className="text-2xl">Watch Trailer</span>
-          </Button>
-          
-          {/* Scroll Indicator */}
-          <motion.div 
-            className="mt-12"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: hasScrolled ? 0 : 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="w-6 h-10 border-2 border-cyan-300/70 rounded-full flex justify-center animate-bounce mx-auto">
-              <div className="w-1 h-3 bg-cyan-300/70 rounded-full mt-2"></div>
-            </div>
-            <p className="text-slate-400 text-sm mt-2">Scroll to explore</p>
-          </motion.div>
-        </motion.div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/anime-style-parkour-character-jumping-between-futu.jpg"
+          alt="Vault Breaker Hero - Parkour character in futuristic city"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-purple-900/50 to-cyan-900/70" />
+        {/* Animated Background Elements */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-amber-500/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+      {/* Text Content */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+        {/* Game Studio Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-cyan-400/40 mb-6">
+          <GamepadIcon className="w-4 h-4 text-cyan-300" />
+          <span className="text-cyan-200 font-semibold text-sm">
+            PLAYGAME STUDIOS PRESENTS
+          </span>
+        </div>
+
+        {/* Main Title */}
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-white">
+          VAULT
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
+            BREAKER
+          </span>
+        </h1>
+
+        {/* Tagline */}
+        <p className="text-xl md:text-2xl lg:text-3xl text-gray-100 mb-6 max-w-4xl mx-auto text-balance leading-relaxed font-medium">
+          Defy gravity. Master the urban landscape. Become legend in the ultimate 
+          <span className="text-cyan-200 font-semibold"> anime-style parkour experience</span> of Neo-Tokyo 2045.
+        </p>
+
+        {/* Sub Description */}
+        <p className="text-lg text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Run, jump, and flow through breathtaking cityscapes. Unlock characters, 
+          master abilities, and compete in the world's most extreme urban sport.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <Button 
+            size="lg"
+            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold text-lg rounded-xl transition-all hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 border-2 border-cyan-400/30"
+          >
+            <Play className="w-5 h-5 mr-2" />
+            Play Free Now
+          </Button>
+          
+          <Button 
+            variant="outline"
+            size="lg"
+            className="px-8 py-4 border-2 border-white/40 text-white hover:bg-white/20 font-bold text-lg rounded-xl transition-all hover:scale-105 backdrop-blur-sm hover:border-white/60"
+            onClick={() => setIsOpen(true)}
+          >
+            <Youtube className="w-5 h-5 mr-2" />
+            Watch Trailer
+          </Button>
+        </div>
+
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+        <div className="w-6 h-10 border-2 border-cyan-300 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-cyan-300 rounded-full mt-2"></div>
+        </div>
       </div>
 
       {/* 🎬 Video Modal */}
@@ -265,7 +126,7 @@ export function HeroSection() {
               <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg px-4 py-2 border border-cyan-400/30">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-cyan-300" />
-                  <span className="text-white font-semibold text-sm">Game Trailer</span>
+                  <span className="text-white font-semibold text-sm">Vault Breaker - Official Trailer</span>
                 </div>
               </div>
             </motion.div>

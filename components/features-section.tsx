@@ -1,33 +1,160 @@
+"use client"
 import { Card } from "@/components/ui/card"
-import { Zap, Users, Map, Trophy, Sparkles } from "lucide-react"
+import { Zap, Users, Map, Trophy, Sparkles, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 const features = [
   {
     icon: Zap,
     title: "Fluid Parkour Movement",
     description: "Smooth and responsive controls for wall running, vaulting, sliding, and precision jumping.",
+    image: "/images/parkour-movement.jpg"
   },
   {
     icon: Map,
     title: "Urban Environments",
     description: "Explore 4 unique cities with challenging levels designed for parkour mastery.",
+    image: "/images/urban-environments.jpg"
   },
   {
     icon: Users,
     title: "Character Progression",
     description: "Unlock new runners with unique abilities as you progress through the game.",
+    image: "/images/character-progression.jpg"
   },
   {
     icon: Trophy,
     title: "Time Trial Challenges",
     description: "Compete for the fastest times on global leaderboards and daily challenges.",
+    image: "/images/time-trial.jpg"
   },
 ]
 
+// Carousel images - 5 different parkour/game images
+const carouselImages = [
+  "/1.png",
+  "/2.png",
+  "/3.png",
+  "/4.png",
+  "/5.jpg",
+]
+
 export function FeaturesSection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+    )
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    )
+  }
+
+  const goToImage = (index: number) => {
+    setCurrentImageIndex(index)
+  }
+
+  // Auto slide every 5 seconds
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     nextImage()
+  //   }, 5000)
+  //   return () => clearInterval(interval)
+  // }, [currentImageIndex])
+
   return (
     <section id="features" className="py-20 lg:py-32 bg-gradient-to-b from-slate-900 to-slate-950">
       <div className="container mx-auto px-4 lg:px-8">
+        {/* Carousel Section - NEW */}
+        <div className="relative mb-20 max-w-6xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-cyan-500/10">
+            {/* Main Carousel Image */}
+            <div className="aspect-[21/9] relative">
+              <img
+                src={carouselImages[currentImageIndex]}
+                alt={`Parkour Game Scene ${currentImageIndex + 1}`}
+                className="w-full h-full object-cover transition-opacity duration-500"
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+              
+              {/* Carousel Controls */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-cyan-500/30 hover:border-cyan-500 transition-all hover:scale-110"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-cyan-500/30 hover:border-cyan-500 transition-all hover:scale-110"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              {/* Image Indicator Dots */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3">
+                {carouselImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      index === currentImageIndex
+                        ? "bg-cyan-400 w-8"
+                        : "bg-white/50 hover:bg-white/80"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Image Counter */}
+              <div className="absolute bottom-6 right-6 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full border border-cyan-500/30">
+                <span className="text-sm font-medium text-cyan-300">
+                  {currentImageIndex + 1} / {carouselImages.length}
+                </span>
+              </div>
+
+              {/* Carousel Title */}
+              <div className="absolute top-6 left-6 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-xl border border-cyan-500/30">
+                <span className="text-sm font-semibold text-cyan-300">
+                  Vault Breaker 
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Thumbnail Navigation */}
+          <div className="flex justify-center gap-3 mt-4">
+            {carouselImages.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => goToImage(index)}
+                className={`relative overflow-hidden rounded-xl border-2 transition-all ${
+                  index === currentImageIndex
+                    ? "border-cyan-400 scale-105"
+                    : "border-transparent hover:border-cyan-500/50"
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="w-20 h-12 object-cover opacity-70 hover:opacity-100"
+                />
+                {index === currentImageIndex && (
+                  <div className="absolute inset-0 bg-cyan-400/20"></div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Main Title - Center Aligned */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/30 mb-6">
