@@ -8,7 +8,7 @@ const characters = [
     name: "Akira",
     role: "Balanced Runner",
     image: "/anime-male-character-with-spiky-blue-hair-in-parko.jpg",
-    backstory: "A high school student who discovered parkour during the Gravity Shift. He's still learning but shows great potential with his natural athleticism.",
+    backstory: "Akira is a well-rounded parkour athlete known for his strength and control. With a muscular build and sharp reflexes, he excels in both speed and stability, making him ideal for players who want a dependable and versatile runner. His balanced stats allow smooth navigation through urban terrain with consistent performance.",
     abilities: ["Quick Step", "Basic Wall Run", "Simple Jump"],
     stats: {
       speed: 70,
@@ -22,7 +22,7 @@ const characters = [
     name: "Yuki",
     role: "Agile Explorer",
     image: "/anime-female-character-with-white-hair-in-athletic.jpg",
-    backstory: "A university student who practices gymnastics. Her flexibility and grace make her excellent at navigating tight spaces and precise landings.",
+    backstory: "Yuki is a nimble and acrobatic freerunner who thrives on momentum and aerial finesse. Her light frame and quick movements make her perfect for high-speed traversal and daring flips. She’s best suited for players who enjoy fast-paced exploration and fluid parkour sequences.",
     abilities: ["Better Balance", "Precision Jump", "Quick Turn"],
     stats: {
       speed: 65,
@@ -36,7 +36,7 @@ const characters = [
     name: "Ryu",
     role: "Stable Climber",
     image: "/anime-male-character-with-red-jacket-in-dynamic-ju.jpg",
-    backstory: "A part-time delivery worker who knows the city's shortcuts. His job gave him strong legs and good climbing technique.",
+    backstory: "Ryu is a grounded and resilient character built for vertical challenges. With a calm demeanor and powerful grip, he specializes in climbing walls, scaling ruins, and maintaining control in unstable environments. Ideal for players who prefer precision and endurance over speed.",
     abilities: ["Sturdy Grip", "Reliable Climb", "Steady Landing"],
     stats: {
       speed: 60,
@@ -50,7 +50,7 @@ const characters = [
     name: "Sakura",
     role: "Technical Runner",
     image: "/anime-female-character-with-pink-hair-running-on-w.jpg",
-    backstory: "An architecture student who understands urban structures. She uses her knowledge to find the most efficient routes through the city.",
+    backstory: "Sakura is a graceful and strategic runner who combines elegance with complexity. Her movements require timing and skill, rewarding players who master her advanced techniques. With her intermediate classification, she’s perfect for those ready to take on more intricate parkour routes and tactical gameplay.",
     abilities: ["Route Planning", "Wall Kick", "Momentum Control"],
     stats: {
       speed: 68,
