@@ -59,62 +59,6 @@ const characters = [
     },
     origin: "Architecture College",
     unlock: "Neo-Tokyo Level 15"
-  },
-  {
-    name: "Kaito",
-    role: "Urban Scout",
-    image: "/Lock.jpg",
-    backstory: "A freelance photographer who chases the perfect shot. His experience chasing events across the city improved his endurance.",
-    abilities: ["Longer Sprint", "Better Stamina", "Quick Recovery"],
-    stats: {
-      speed: 72,
-      agility: 68,
-      strength: 62
-    },
-    origin: "Freelance Photographer",
-    unlock: "Cyber-Osaka Level 5"
-  },
-  {
-    name: "Hana",
-    role: "Flow Specialist",
-    image: "/Lock.jpg",
-    backstory: "A dance instructor who applies dance principles to parkour. Her movements are fluid and connected, conserving energy.",
-    abilities: ["Smooth Transitions", "Energy Conservation", "Flow State"],
-    stats: {
-      speed: 66,
-      agility: 78,
-      strength: 58
-    },
-    origin: "Dance Studio Owner",
-    unlock: "Cyber-Osaka Level 10"
-  },
-  {
-    name: "Kenji",
-    role: "Precision Expert",
-    image: "/Lock.jpg",
-    backstory: "Former martial artist who focuses on perfect form. Every movement is calculated and precise, minimizing mistakes.",
-    abilities: ["Perfect Timing", "Accurate Landing", "Controlled Speed"],
-    stats: {
-      speed: 64,
-      agility: 74,
-      strength: 68
-    },
-    origin: "Martial Arts Dojo",
-    unlock: "Cyber-Osaka Level 15"
-  },
-  {
-    name: "Mika",
-    role: "Adaptive Runner",
-    image: "/Lock.jpg",
-    backstory: "A parkour instructor who understands different body types. She adapts techniques to fit any situation or challenge.",
-    abilities: ["Adaptive Style", "Quick Learning", "Versatile Moves"],
-    stats: {
-      speed: 69,
-      agility: 71,
-      strength: 64
-    },
-    origin: "Parkour Academy",
-    unlock: "Floating Kyoto Level 5"
   }
 ]
 
