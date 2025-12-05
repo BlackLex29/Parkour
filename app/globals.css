@@ -139,4 +139,26 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
+  
+  /* Hero Section Custom Gradient */
+  .hero-gradient {
+    background: linear-gradient(
+      to bottom right,
+      rgba(15, 23, 42, 0.6) 0%,      /* slate-900/60 */
+      rgba(88, 28, 135, 0.3) 30%,     /* purple-900/30 */
+      rgba(6, 182, 212, 0.2) 70%,     /* cyan-500/20 */
+      transparent 100%
+    );
+  }
+  
+  /* Subtle gradient for hero section only */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(15, 23, 42, 0.3) 40%,     /* Very transparent slate */
+      rgba(15, 23, 42, 0.4) 70%,     /* Slightly darker at bottom */
+      rgba(15, 23, 42, 0.5) 100%     /* Dark enough for text contrast */
+    );
+  }
 }
