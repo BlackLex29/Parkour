@@ -76,25 +76,6 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* Game Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
-          <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-            <div className="text-2xl md:text-3xl font-bold text-cyan-300">60+</div>
-            <div className="text-sm text-gray-200">Challenging Levels</div>
-          </div>
-          <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-            <div className="text-2xl md:text-3xl font-bold text-purple-300">13</div>
-            <div className="text-sm text-gray-200">Unique Characters</div>
-          </div>
-          <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-            <div className="text-2xl md:text-3xl font-bold text-green-300">4</div>
-            <div className="text-sm text-gray-200">Epic Cities</div>
-          </div>
-          <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-            <div className="text-2xl md:text-3xl font-bold text-amber-300">∞</div>
-            <div className="text-sm text-gray-200">Replay Value</div>
-          </div>
-        </div>
       </div>
 
       {/* Scroll Indicator */}
